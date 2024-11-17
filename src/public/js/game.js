@@ -9,8 +9,8 @@ export default function game(players, rounds, scores) {
                 gameClass.moveMessage(player)
                 for (let moveNumber = 1; moveNumber < 4; moveNumber++) {
                     if (player.scores != 0) {
-                        let moveResult = gameClass.moveResult(player, moveNumber)
-                        player.scores = gameClass.calculate(player, moveResult)
+                        let moveResult = gameClass.getMoveResult(player, moveNumber)
+                        player.scores = gameClass.calculateScores(player, moveResult)
                         if (player.scores != 0) {
                             gameClass.residueMessage(player)
                         } else {

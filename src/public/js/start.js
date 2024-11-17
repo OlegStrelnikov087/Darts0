@@ -1,3 +1,4 @@
+
 export default class StartGame {
 
     getPlayersName() {
@@ -15,13 +16,35 @@ export default class StartGame {
     }
 
     getRounds() {
-        return prompt('Введите количество легов')
+        let rounds = ''
+        let roundsQuantity = NaN
+        do {
+            rounds = prompt('Введите количество легов')
+            roundsQuantity = Number(rounds)
+        } while (isNaN(roundsQuantity))
+
+        return roundsQuantity
     }
+
+
+
 
 
     getScores() {
-        return prompt('Введите количество очков')
+
+        let scores = ''
+        let scoresQuantity
+        do {
+
+            scores = prompt('Введите количество очков')
+            scoresQuantity = Number(scores)
+
+        } while (isNaN(scoresQuantity))
+
+        return scoresQuantity
+
     }
+
 
     createPlayer(name, score) {
         return {

@@ -3,12 +3,47 @@ export default class Actions {
         console.log(`Бросает ${player.name}. Осталось ${player.scores} `)
     }
 
-    moveResult(player, moveNumber) {
-        let moveResult = prompt(`Результат ${moveNumber}-го броска игрока ${player.name}`)
-        return moveResult
+    getMoveResult(player, moveNumber) {
+
+        let scores = ''
+        let scoresQuantity
+        do {
+
+            scores = prompt(`Результат ${moveNumber}-го броска игрока ${player.name}`)
+            scoresQuantity = Number(scores)
+            const [symbol, ...numberArr] = scores;
+            const number = numberArr.join('')
+            switch (symbol) {
+                case 't':
+                case 'T':
+                    if (Number(number)) {
+                        return parseInt(number) * 3;
+                    } else {
+                        alert('error')
+                        continue;
+                    }
+                case 'w':
+                case 'W':
+                    if (Number(number)) {
+                        return parseInt(number) * 2;
+                    } else {
+                        alert('error')
+                        continue;
+                    }
+                default:
+                    if (Number(scoresQuantity)) {
+                        return parseInt(scoresQuantity);
+                    } else {
+                        alert('error!');
+                    }
+
+            }
+        } while (isNaN(scoresQuantity))
+
+        return scoresQuantity
     }
 
-    calculate(player,moveResult) {
+    calculateScores(player, moveResult) {
         return player.scores - moveResult
     }
 
@@ -20,7 +55,7 @@ export default class Actions {
         console.log(`${player.name} выйграл лег`)
     }
 
-   
+
     winGameMessage(player) {
         console.log(`Игрок ${player.name} выйграл! Поздравляем!`)
     }
