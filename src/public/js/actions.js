@@ -17,7 +17,8 @@ export default class Actions {
                 case 't':
                 case 'T':
                     if (Number(number)) {
-                        return parseInt(number) * 3;
+                        // return parseInt(number) * 3;
+                        return [parseInt(number)*3, 'triple']
                     } else {
                         alert('error')
                         continue;
@@ -25,14 +26,16 @@ export default class Actions {
                 case 'w':
                 case 'W':
                     if (Number(number)) {
-                        return parseInt(number) * 2;
+                        // return parseInt(number) * 2;
+                        return [parseInt(number)*2, 'double']
                     } else {
                         alert('error')
                         continue;
                     }
                 default:
                     if (Number(scoresQuantity)) {
-                        return parseInt(scoresQuantity);
+                        // return parseInt(scoresQuantity);
+                        return [parseInt(scoresQuantity), 'normal']
                     } else {
                         alert('error!');
                     }
@@ -43,8 +46,17 @@ export default class Actions {
         return scoresQuantity
     }
 
-    calculateScores(player, moveResult) {
-        return player.scores - moveResult
+    calculateScores(player, moveResult, doubling) {
+        let result =  player.scores - moveResult
+    
+        if (result >1 || (result === 0 && doubling === 'double')) {
+            return result
+        } else {
+            alert('error Перебор')
+            return player.scores
+        }
+
+        
     }
 
     residueMessage(player) {
