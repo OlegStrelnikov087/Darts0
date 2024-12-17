@@ -1,61 +1,38 @@
-export default class Actions {
-    moveMessage(player) {
+export const actions = class Actions {
+    throwMessage(player) {
         console.log(`Бросает ${player.name}. Осталось ${player.scores} `)
     }
 
-    getMoveResult(player, moveNumber) {
+    throwPoints(player, moveNumber) {
 
-        let scores = ''
         let scoresQuantity
         do {
+            let scores = ''
             scores = prompt(`Результат ${moveNumber}-го броска игрока ${player.name}`)
-            scoresQuantity = Number(scores)
-            const [symbol, ...numberArr] = scores;
-            const number = numberArr.join('')
-            switch (symbol) {
-                case 't':
-                case 'T':
-                    if (Number(number)) {
-                        // return parseInt(number) * 3;
-                        // return [parseInt(number) * 3, 'triple']
-                        if (parseInt(number) <= 20) {
-                            return [parseInt(number) * 3, 'triple']
-                        } else {
+            scoresQuantity = parseInt(scores)
+            if (scoresQuantity <= 20) {
+                return [scoresQuantity, 'normal']
+            } else {
+                const [symbol, ...numberArr] = scores;
+                const number = parseInt(numberArr.join(''))
+                if (number <= 20) {
+                    switch (symbol) {
+                        case 'T':
+                        case 't':
+                            return [number * 3, 'triple']
+                        case 'W':
+                        case 'w':
+                            return [number * 2, 'double']
+                        default:
                             scoresQuantity = NaN
-                        }
-                    } else {
-                        alert('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
-                        continue;
                     }
-                case 'w':
-                case 'W':
-                    if (Number(number)) {
-                        // return parseInt(number) * 2;
-                        // return [parseInt(number) * 2, 'double']
-                        if (parseInt(number) <= 20) {
-                            return [parseInt(number) * 2, 'double']
-                        } else {
-                            scoresQuantity = NaN
-                        }
-                    } else {
-                        alert('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
-                        continue;
-                    }
-                default:
-                    if (Number(scoresQuantity>=0)) {
-                        // return parseInt(scoresQuantity);
-                        // return [parseInt(scoresQuantity), 'normal']
-                        if (parseInt(scoresQuantity) <= 20) {
-                            return [parseInt(scoresQuantity), 'normal']
-                        } else {
-                            alert('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
-                            scoresQuantity = NaN
-                        }
-                    } else {
-                        alert('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
-                    }
-
+                } else {
+                    scoresQuantity = NaN
+                    alert('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
+                    continue
+                }
             }
+
         } while (isNaN(scoresQuantity))
 
         return scoresQuantity

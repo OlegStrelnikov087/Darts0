@@ -1,11 +1,11 @@
 
-export default class StartGame {
+export const startData = class StartData {
 
     getPlayersName() {
         let playersName = []
         let createPlayers = true
-        while (createPlayers != false) {
-            let name = prompt('Введите имя игрока')
+        while (createPlayers) {
+            let name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК или введите 0')
             if (name != 0) {
                 playersName.push(name)
             } else {
@@ -13,6 +13,8 @@ export default class StartGame {
             }
         }
         return playersName
+
+
     }
 
     getRounds() {
@@ -60,6 +62,21 @@ export default class StartGame {
             players.push(this.createPlayer(name, score))
         })
         return players
+    }
+
+    getData() {
+
+        let names = this.getPlayersName()
+        let rounds = this.getRounds()
+        let scores = this.getScores()
+
+        return {
+            players: this.getPlayers(names, scores),
+            rounds: rounds,
+            scores: scores
+        }
+
+
     }
 
 }

@@ -1,15 +1,15 @@
-import Actions from "./actions"
-let actionsClass = new Actions()
+import { actions } from "./actions"
+const actionsClass = new actions()
 
-export default function game(players, rounds, scores) {
+export const gamePlay =  function game(players, rounds, scores) {
     let gameOver = false
     while (gameOver != true) {
         players.forEach(player => {
             if (gameOver != true) {
-                actionsClass.moveMessage(player)
+                actionsClass.throwMessage(player)
                 for (let moveNumber = 1; moveNumber < 4; moveNumber++) {
                     if (player.scores != 0) {
-                        let moveResultArr = actionsClass.getMoveResult(player,moveNumber)
+                        let moveResultArr = actionsClass.throwPoints(player,moveNumber)
                         player.scores = actionsClass.calculateScores(player,moveResultArr[0],moveResultArr[1])
                         if (player.scores === 0 && moveResultArr[1] === 'double') {
                             actionsClass.winRoundMessage(player)
@@ -35,6 +35,7 @@ export default function game(players, rounds, scores) {
         })
     }
 }
+
 
 // export default function game(players, rounds, scores) {
 //     let gameOver = false
