@@ -2,30 +2,25 @@
 export const startData = class StartData {
 
     getPlayersName() {
-        let playersName = []
-        let createPlayers = true
-        while (createPlayers) {
-            let name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК или введите 0')
-            if (name != 0) {
-                playersName.push(name)
-            } else {
-                createPlayers = false
-            }
-        }
-        return playersName
 
+        const playersName = []
+        let name
+        do {
+            name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
+            playersName.push(name)
+        } while (name !== "")
+        return playersName
 
     }
 
     getRounds() {
-        let rounds = ''
-        let roundsQuantity = NaN
-        do {
-            rounds = prompt('Введите количество легов')
-            roundsQuantity = Number(rounds)
-        } while (isNaN(roundsQuantity))
 
-        return roundsQuantity
+        let rounds = ''
+        do {
+            rounds = parseInt(prompt('Введите количество легов'))
+
+        } while (rounds < 1)
+        return rounds
     }
 
 
@@ -35,16 +30,10 @@ export const startData = class StartData {
     getScores() {
 
         let scores = ''
-        let scoresQuantity
         do {
-
-            scores = prompt('Введите количество очков')
-            scoresQuantity = Number(scores)
-
-        } while (isNaN(scoresQuantity))
-
-        return scoresQuantity
-
+            scores = parseInt(prompt('Введите количество очков'))
+        } while (scores < 2)
+        return scores
     }
 
 

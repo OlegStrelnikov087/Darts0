@@ -20,9 +20,10 @@ const start = new startData()
 
 
 
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
+
     const data = start.getData()
-    document.querySelector('.play').addEventListener('click',()=>{
-        gamePlay(data.players,data.rounds,data.scores)
+    document.querySelector('.play').addEventListener('click', () => {
+        gamePlay(data.players, data.rounds, data.scores)
     })
 })

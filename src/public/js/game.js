@@ -11,7 +11,7 @@ export const gamePlay =  function game(players, rounds, scores) {
                     if (player.scores != 0) {
                         let moveResultArr = actionsClass.throwPoints(player,moveNumber)
                         player.scores = actionsClass.calculateScores(player,moveResultArr[0],moveResultArr[1])
-                        if (player.scores === 0 && moveResultArr[1] === 'double') {
+                        if (player.scores === 0 && moveResultArr[1] === 'double') {             // хрень
                             actionsClass.winRoundMessage(player)
                             player.wins +=1
                             players.forEach(player=> {
