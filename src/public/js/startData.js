@@ -7,7 +7,9 @@ export const startData = class StartData {
         let name
         do {
             name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
-            playersName.push(name)
+            if (name!= ''){
+                playersName.push(name)
+            }
         } while (name !== "")
         return playersName
 
