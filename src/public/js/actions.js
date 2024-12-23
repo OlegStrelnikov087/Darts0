@@ -44,7 +44,6 @@ export const actions = class Actions {
         if (result > 1 || (result === 0 && doubling === 'double')) {
             return result
         } else {
-            // alert('error Перебор')
             return player.scores
         }
 
