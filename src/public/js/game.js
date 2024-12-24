@@ -2,31 +2,45 @@ import { actions } from "./actions"
 const actionsClass = new actions()
 const THROW_QUANTITY = 3
 export const gameClass = class Game {
-    game(data) {
+    constructor(data) {
+        this.data = data
+    }
+    game() {
+
         let gameIsOver = false
         while (gameIsOver === false) {
-            data.players.forEach(player => {
+            for (let i = 0; i < this.data.players.length; i++) {
+
                 let move = 1
                 do {
-                    let throwScoreArr = actionsClass.throwPoints(player, move)
-                    player.scores = actionsClass.calculateScores(player, throwScoreArr[0], throwScoreArr[1])
-                    actionsClass.residueMessage(player)
+                    let throwScoreArr = actionsClass.throwPoints(this.data.players[i], move)
+                    this.data.players[i].scores = actionsClass.calculateScores(this.data.players[i], throwScoreArr[0], throwScoreArr[1])
+                    actionsClass.residueMessage(this.data.players[i])
                     move++
-                } while (!this.nextPlayer(this.playerWinRound(player), move));
-                if (this.playerWinRound(player)) {
-                    actionsClass.winRoundMessage(player)
-                    player.wins++
+                } while (!this.nextPlayer(this.playerWinRound(this.data.players[i]), move));
+                if (this.playerWinRound(this.data.players[i])) {
+                    actionsClass.winRoundMessage(this.data.players[i])
+                    this.data.players = this.data.players.map((player) => this.resetPlayerScores(player, this.data.scores)) // сброс очков у всех игроков после окончания лега
+                    console.log(this.data);
+                    this.data.players[i].wins++
                 }
-                gameIsOver = this.gameOver(player, data.rounds)
-            });
+                if (this.playerWinGame(this.data.players[i], this.data.rounds)) {
+                    actionsClass.winGameMessage(this.data.players[i])
+                    gameIsOver = this.gameOver(this.playerWinGame(this.data.players[i], this.data.rounds))
+                    break
+                }
+            }
+
         }
         actionsClass.gameOverMessage()
+
     }
 
-    gameOver(player, rounds) {
-        if (player.wins === rounds) {
+    gameOver(playerWin) {
+        if (playerWin) {
             return true
         } else return false
+        // можно добавить еще варианты завершения игры
     }
 
     nextPlayer(playerWinRound, move) {
@@ -40,6 +54,17 @@ export const gameClass = class Game {
         if (player.scores === 0) {
             return true
         } else return false
+    }
+
+    playerWinGame(player, rounds) {
+        if (player.wins === rounds) {
+            return true
+        } else return false
+    }
+
+    resetPlayerScores(player, scores) {
+        player.scores = scores
+        return player
     }
 
 
