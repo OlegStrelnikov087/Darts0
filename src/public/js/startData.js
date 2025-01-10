@@ -1,5 +1,5 @@
 
-export const startData = class StartData {
+class StartData {
 
     getPlayersName() {
 
@@ -74,6 +74,6 @@ export const startData = class StartData {
 
 }
 
-
+export const startData = new StartData()
 
 

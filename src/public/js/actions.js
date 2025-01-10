@@ -1,4 +1,4 @@
-export const actions = class Actions {
+class Actions {
     throwMessage(player) {
         console.log(`Бросает ${player.name}. Осталось ${player.scores} `)
     }
@@ -68,3 +68,5 @@ export const actions = class Actions {
     }
 
 }
+
+export const actions = new Actions()

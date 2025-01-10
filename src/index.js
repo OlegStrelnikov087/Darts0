@@ -1,17 +1,14 @@
 import { gameClass } from "./public/js/game";
 import { startData } from "./public/js/startData";
-const start = new startData()
-
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const data = start.getData()
-    const game = new gameClass(data)
+    const data = startData.getData()
 
     function listener() {
         console.log('Ураааа !');
-        game.game()
+        (new gameClass(data)).game()
     }
     const btn = document.querySelector('.play')
 
