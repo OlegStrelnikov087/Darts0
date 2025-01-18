@@ -7,7 +7,7 @@ class StartData {
         let name
         do {
             name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
-            if (name!= ''){
+            if (name != '') {
                 playersName.push(name)
             }
         } while (name !== "")
@@ -24,10 +24,6 @@ class StartData {
         } while (rounds < 1)
         return rounds
     }
-
-
-
-
 
     getScores() {
 
@@ -67,10 +63,7 @@ class StartData {
             scores: scores
         }
 
-
     }
-
-    
 
 }
 

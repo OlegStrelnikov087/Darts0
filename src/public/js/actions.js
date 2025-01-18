@@ -1,3 +1,4 @@
+const THROW_LIMIT = 20
 class Actions {
     throwMessage(player) {
         console.log(`Бросает ${player.name}. Осталось ${player.scores} `)
@@ -7,15 +8,15 @@ class Actions {
 
         let scoresQuantity
         do {
-            let scores = ''
-            scores = prompt(`Результат ${moveNumber}-го броска игрока ${player.name}`)
+            // let scores = ''
+            let scores = prompt(`Результат ${moveNumber}-го броска игрока ${player.name}`)
             scoresQuantity = parseInt(scores)
-            if (scoresQuantity <= 20) {
+            if (scoresQuantity <= THROW_LIMIT) {
                 return [scoresQuantity, 'normal']
             } else {
                 const [symbol, ...numberArr] = scores;
                 const number = parseInt(numberArr.join(''))
-                if (number <= 20) {
+                if (number <= THROW_LIMIT) {
                     switch (symbol) {
                         case 'T':
                         case 't':
