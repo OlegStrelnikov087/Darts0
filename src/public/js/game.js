@@ -20,7 +20,6 @@ class Game {
                 if (this.playerWinRound(this.data.players[i])) {
                     actions.winRoundMessage(this.data.players[i])
                     this.data.players = this.data.players.map((player) => this.resetPlayerScores(player, this.data.scores)) // сброс очков у всех игроков после окончания лега
-                    console.log(this.data);
                     this.data.players[i].wins++
                 }
                 if (this.playerWinGame(this.data.players[i], this.data.rounds)) {
@@ -66,7 +65,7 @@ class Game {
         return player
     }
 
-
+   
 }
 
-export const gameClass =  Game
+export const gameClass = Game
