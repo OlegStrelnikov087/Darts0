@@ -24,7 +24,7 @@ class Game {
                 }
                 if (this.playerWinGame(this.data.players[i], this.data.rounds)) {
                     actions.winGameMessage(this.data.players[i])
-                    gameIsOver = this.gameOver(this.playerWinGame(this.data.players[i], this.data.rounds))
+                    gameIsOver = this.isGameOver(this.playerWinGame(this.data.players[i], this.data.rounds))
                     break
                 }
             }
@@ -34,7 +34,7 @@ class Game {
 
     }
 
-    gameOver(playerWin) {
+    isGameOver(playerWin) {
         if (playerWin) {
             return true
         } else return false
