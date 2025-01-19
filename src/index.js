@@ -5,7 +5,6 @@ import { startData } from "./public/js/startData";
 
 document.addEventListener('DOMContentLoaded', () => {
     const data = startData.getData()
-
     // function listener() {
     //         console.log('Ураааа !');
     //         (new gameClass(data)).game()

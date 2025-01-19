@@ -1,7 +1,7 @@
 
 class StartData {
 
-    getPlayersName() {
+    #getPlayersName() {
 
         const playersName = []
         let name
@@ -15,7 +15,7 @@ class StartData {
 
     }
 
-    getRounds() {
+    #getRounds() {
 
         let rounds = ''
         do {
@@ -25,7 +25,7 @@ class StartData {
         return rounds
     }
 
-    getScores() {
+    #getScores() {
 
         let scores = ''
         do {
@@ -35,7 +35,7 @@ class StartData {
     }
 
 
-    createPlayer(name, score) {
+    #createPlayer(name, score) {
         return {
             name: name,
             scores: score,
@@ -43,22 +43,22 @@ class StartData {
         }
     }
 
-    getPlayers(playersName, score) {
+    #getPlayers(playersName, score) {
         let players = []
         playersName.forEach(name => {
-            players.push(this.createPlayer(name, score))
+            players.push(this.#createPlayer(name, score))
         })
         return players
     }
 
     getData() {
 
-        let names = this.getPlayersName()
-        let rounds = this.getRounds()
-        let scores = this.getScores()
+        let names = this.#getPlayersName()
+        let rounds = this.#getRounds()
+        let scores = this.#getScores()
 
         return {
-            players: this.getPlayers(names, scores),
+            players: this.#getPlayers(names, scores),
             rounds: rounds,
             scores: scores
         }
