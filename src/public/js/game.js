@@ -31,9 +31,10 @@ class Game {
                     gameNotIsOver = !this.isGameOver(this.playerWinGame(this.data.players[i], this.data.rounds))
                     break
                 }
-
+                break
             }
             actions.gameOverMessage()
+            break
         }
        
 

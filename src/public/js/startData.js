@@ -4,13 +4,23 @@ class StartData {
     #getPlayersName() {
 
         const playersName = []
-        let name
+        // let name
+        // do {
+        //     name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
+        //     if (name != '') {
+        //         playersName.push(name)
+        //     }
+        // } while (name !== "")
+        // return playersName
+        let name 
         do {
             name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
-            if (name != '') {
+            if ( (typeof name) == 'string' && name!== '') {
                 playersName.push(name)
+            } else {
+                alert('сначала введите как минимум двух игроков!')
             }
-        } while (name !== "")
+        } while (playersName.length < 2)
         return playersName
 
     }
@@ -19,9 +29,9 @@ class StartData {
 
         let rounds = ''
         do {
-            rounds = parseInt(prompt('Введите количество легов'))
+            rounds = prompt('Введите количество легов')
 
-        } while (rounds < 1)
+        } while (rounds < 1 || isNaN(rounds))
         return rounds
     }
 
@@ -29,8 +39,8 @@ class StartData {
 
         let scores = ''
         do {
-            scores = parseInt(prompt('Введите количество очков'))
-        } while (scores < 2)
+            scores = prompt('Введите количество очков')
+        } while (scores < 2 || isNaN(scores))
         return scores
     }
 
