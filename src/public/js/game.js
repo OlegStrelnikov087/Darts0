@@ -5,32 +5,37 @@ class Game {
         this.data = data
     }
     game() {
-
-        let gameIsOver = false
-        while (gameIsOver === false) {
+        let gameNotIsOver = true
+        while (gameNotIsOver) {
             for (let i = 0; i < this.data.players.length; i++) {
 
                 let move = 1
+                let throwScoreArr = []
                 do {
-                    let throwScoreArr = actions.throwPoints(this.data.players[i], move)
-                    this.data.players[i].scores = actions.calculateScores(this.data.players[i], throwScoreArr[0], throwScoreArr[1])
+                    actions.residueMessage(this.data.players[i])
+                    throwScoreArr = actions.throwPoints(this.data.players[i], move)
+                    this.data.players[i].scores = actions.calculateScores(this.data.players[i], throwScoreArr[0], throwScoreArr[1])[0]
                     actions.residueMessage(this.data.players[i])
                     move++
-                } while (!this.nextPlayer(this.playerWinRound(this.data.players[i]), move));
+
+                } while (!this.nextPlayer(this.playerWinGame(this.data.players[i]), move, actions.calculateScores(this.data.players[i], throwScoreArr[0], throwScoreArr[1])[1]))
+
                 if (this.playerWinRound(this.data.players[i])) {
                     actions.winRoundMessage(this.data.players[i])
                     this.data.players = this.data.players.map((player) => this.resetPlayerScores(player, this.data.scores)) // сброс очков у всех игроков после окончания лега
                     this.data.players[i].wins++
                 }
+
                 if (this.playerWinGame(this.data.players[i], this.data.rounds)) {
                     actions.winGameMessage(this.data.players[i])
-                    gameIsOver = this.isGameOver(this.playerWinGame(this.data.players[i], this.data.rounds))
+                    gameNotIsOver = !this.isGameOver(this.playerWinGame(this.data.players[i], this.data.rounds))
                     break
                 }
-            }
 
+            }
+            actions.gameOverMessage()
         }
-        actions.gameOverMessage()
+       
 
     }
 
@@ -41,9 +46,9 @@ class Game {
         // можно добавить еще варианты завершения игры
     }
 
-    nextPlayer(playerWinRound, move) {
+    nextPlayer(playerWinRound, move, isOverTheScore) {
 
-        if (playerWinRound || move > THROW_QUANTITY) {
+        if (playerWinRound || move > THROW_QUANTITY || isOverTheScore) {
             return true
         } else return false
     }
@@ -65,7 +70,7 @@ class Game {
         return player
     }
 
-   
+
 }
 
 export const gameClass = Game

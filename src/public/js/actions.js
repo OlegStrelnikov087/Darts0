@@ -5,47 +5,47 @@ class Actions {
     }
 
     throwPoints(player, moveNumber) {
-
-        let scoresQuantity
+        let throwScores 
         do {
-            // let scores = ''
+
             let scores = prompt(`Результат ${moveNumber}-го броска игрока ${player.name}`)
-            scoresQuantity = parseInt(scores)
-            if (scoresQuantity <= THROW_LIMIT) {
-                return [scoresQuantity, 'normal']
+            throwScores = parseInt(scores)
+            if (throwScores <= THROW_LIMIT && throwScores >=0) {
+                return [scores, 'normal']
+    
             } else {
-                const [symbol, ...numberArr] = scores;
+                const [symbol, ...numberArr] = scores
                 const number = parseInt(numberArr.join(''))
                 if (number <= THROW_LIMIT) {
                     switch (symbol) {
                         case 'T':
                         case 't':
                             return [number * 3, 'triple']
+                        
                         case 'W':
                         case 'w':
                             return [number * 2, 'double']
                         default:
-                            scoresQuantity = NaN
+                            console.log('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
+                            throwScores = NaN
                     }
                 } else {
-                    scoresQuantity = NaN
-                    alert('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
-                    continue
+                    console.log('error! Нужно ввести только число от 0 до 20, для утроения используйте t или T в начале строки, для удвоения w или W');
+                    throwScores =  NaN 
                 }
             }
 
-        } while (isNaN(scoresQuantity))
+        } while (isNaN(throwScores))
 
-        return scoresQuantity
     }
 
     calculateScores(player, moveResult, doubling) {
         let result = player.scores - moveResult
 
         if (result > 1 || (result === 0 && doubling === 'double')) {
-            return result
+            return [result, false]
         } else {
-            return player.scores
+            return [player.scores, true]
         }
 
 
