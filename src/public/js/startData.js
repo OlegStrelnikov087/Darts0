@@ -4,17 +4,9 @@ class StartData {
     #getPlayersName() {
 
         const playersName = []
-        // let name
-        // do {
-        //     name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
-        //     if (name != '') {
-        //         playersName.push(name)
-        //     }
-        // } while (name !== "")
-        // return playersName
-        let name 
+       
         do {
-            name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
+            let name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
             if ( (typeof name) == 'string' && name!== '') {
                 playersName.push(name)
             } else {
