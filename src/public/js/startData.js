@@ -3,14 +3,14 @@ class StartData {
 
     #getPlayersName() {
         const playersName = []
-       
+
         let name
         do {
             name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
             if (name !== '' && name !== null) {
                 playersName.push(name)
-            } 
-            
+            }
+
             if ((name === '' || name === null) && playersName.length < 2) {
                 alert('сначала введите как минимум двух игроков!')
             }
@@ -24,7 +24,7 @@ class StartData {
     }
 
     #addPlayers(name, playersQuantity) {
-        if (name === '' && playersQuantity >= 2){
+        if (name === '' && playersQuantity >= 2) {
             return true
         } else {
             return false
@@ -35,8 +35,7 @@ class StartData {
 
         let rounds = ''
         do {
-            rounds = parseInt(prompt('Введите количество легов'))
-
+            rounds = parseInt(Number(prompt('Введите количество легов')))
         } while (rounds < 1 || isNaN(rounds))
         return rounds
     }
@@ -45,7 +44,7 @@ class StartData {
 
         let scores = ''
         do {
-            scores = parseInt(prompt('Введите количество очков'))
+            scores = parseInt(Number(prompt('Введите количество очков')))
         } while (scores < 2 || isNaN(scores))
         return scores
     }
