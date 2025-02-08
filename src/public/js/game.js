@@ -42,7 +42,7 @@ class Game {
         let throwScores
         do {
             let scores = actions.resultThrowMessage(moveNumber, player.name)
-            throwScores = parseInt(scores)
+            throwScores = parseInt(Number(scores))
             if (throwScores <= THROW_LIMIT && throwScores >= 0) {
                 return [scores, 'normal']
             } else {

@@ -28,6 +28,26 @@ class UserInteractions {
         console.log('Игра окончена');
     }
 
+    enterTheNumberOfRoundsMessage() {
+        return prompt('Введите количество легов')
+    }
+
+    enterTheNumberOfScoresMessage() {
+        return prompt('Введите количество очков')
+    }
+
+    enterPlayerName() {
+        return prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
+    }
+
+    minimalNumberOfPlayersMessage() {
+        alert('сначала введите как минимум двух игроков!') 
+    }
+
+    playerNameErrorMessage() {
+        alert('нужно ввести имя игрока или нажать ОК когда добавите как минимум двух игроков')
+    }
+
 }
 
 export const actions = new UserInteractions()

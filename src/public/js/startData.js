@@ -1,4 +1,4 @@
-
+import { actions } from "./userInteractions"
 class StartData {
 
     #getPlayersName() {
@@ -6,17 +6,17 @@ class StartData {
 
         let name
         do {
-            name = prompt('Введите имя игрока. Если вы ввели имена всех игроков, то, чтобы продолжить нажмите ОК')
+            name = actions.enterPlayerName()
             if (name !== '' && name !== null) {
                 playersName.push(name)
             }
 
             if ((name === '' || name === null) && playersName.length < 2) {
-                alert('сначала введите как минимум двух игроков!')
+                actions.minimalNumberOfPlayersMessage()
             }
 
             if (name === null && playersName.length > 1) {
-                alert('нужно ввести имя игрока или нажать ОК когда добавите как минимум двух игроков')
+                actions.playerNameErrorMessage()
             }
         } while (!this.#addPlayers(name, playersName.length))
 
@@ -35,7 +35,7 @@ class StartData {
 
         let rounds = ''
         do {
-            rounds = parseInt(Number(prompt('Введите количество легов')))
+            rounds = parseInt(Number(actions.enterTheNumberOfRoundsMessage()))
         } while (rounds < 1 || isNaN(rounds))
         return rounds
     }
@@ -44,7 +44,7 @@ class StartData {
 
         let scores = ''
         do {
-            scores = parseInt(Number(prompt('Введите количество очков')))
+            scores = parseInt(Number(actions.enterTheNumberOfScoresMessage()))
         } while (scores < 2 || isNaN(scores))
         return scores
     }
