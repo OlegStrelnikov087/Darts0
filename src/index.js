@@ -1,22 +1,17 @@
-import game from "./public/js/darts";
-const playersName = ['Олег', 'Батя']
-const rounds = 2
-const scores = 501
+import { gameClass } from "./public/js/game";
+import { startData } from "./public/js/startData";
 
-const players = [
-    {
-        name: 'Олег',
-        wins: 0,
-        scores: scores
-    },
-    {
-        name: 'Батя',
-        wins: 0,
-        scores: scores
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const data = startData.getData()
+    const btn = document.querySelector('.play')
+    const listener = (event) => {
+        (new gameClass(data)).game()
+        btn.removeEventListener('click', listener)
     }
-]
 
-document.querySelector('.play').addEventListener('click', ()=>{
-    game(players,rounds,scores)
-
+    btn.addEventListener('click', listener)
+  
 })
+
