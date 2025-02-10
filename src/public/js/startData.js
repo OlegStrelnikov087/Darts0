@@ -3,7 +3,6 @@ class StartData {
 
     #getPlayersName() {
         const playersName = []
-
         let name
         do {
             name = actions.enterPlayerName()
