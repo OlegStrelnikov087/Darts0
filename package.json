@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development"
+    "build": "webpack --mode development",
+    "deploy":"npm run build && lftp -u u0537120_oleg,zQ4hK3iX3dmE8hD3 os.seoadministrator.ru -e 'set ssl:verify-certificate no; mirror -R dist/ /www/so.seoadministrator.ru; quit'"
   },
   "keywords": [],
   "author": "",
